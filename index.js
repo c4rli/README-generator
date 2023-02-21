@@ -5,10 +5,10 @@ const generateMarkdown = require("./utils/generateMarkdown");
 const { default: Choices } = require("inquirer/lib/objects/choices");
 
 const licenses = [
-  "CC0",
-  "MIT",
-  "GPL",
-  "Non Commercial License"
+  "Creative Commons License",
+  "MIT License",
+  "GNU GPL v3 License",
+  "Apache License 2.0"
 ]
 
 // array of questions for user
@@ -39,7 +39,7 @@ const questions = [
     message: "Contribution Guidelines:"
   },
   {
-    name: "projectInstructions",
+    name: "projectTesting",
     type: "input",
     message: "Test Instructions:"
   },
@@ -74,14 +74,20 @@ function init() {
 function askQuestions(questions) {
     inquirer
       .prompt(questions)
-      .then((answer) => {
-        console.log(answer);
+      .then((answers) => {
+        answersFunction(answers);
       });
 }
 
+function answersFunction (answers){
+  console.log(answers);
+  console.log(generateMarkdown(answers));
+}
+
 function welcomeMessage(){
-  return (`Welcome to c4rli's README generator
+  return (`Welcome to c4rli's README generator!
   To use this tool you should enter the information prompted followed by the [enter] key
+  To exit at any time press [ctrl] + [c]
   `)
 }
 
