@@ -12,7 +12,6 @@ ${data.projectDescription}
 
 - [Installation](#installation)
 - [Usage](#usage)
-- [Credits](#credits)
 - [License](#license)
 - [Contributing](#contribute)
 - [Tests](#tests)
@@ -25,10 +24,6 @@ ${data.projectInstallation}
 ## Usage
 
 ${data.projectUsage}
-
-## Credits
-
-${data.projectCredits}
 
 ## License
 This project uses a ${data.projectLicense}
