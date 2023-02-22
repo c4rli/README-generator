@@ -4,12 +4,12 @@ const inquirer = require("inquirer");
 const generateMarkdown = require("./utils/generateMarkdown");
 const { default: Choices } = require("inquirer/lib/objects/choices");
 
-const licenses = [
-  "Creative Commons License",
-  "MIT License",
-  "GNU GPL v3 License",
-  "Apache License 2.0"
-]
+const licenses = {
+  "Creative Commons License": "CC0",
+  "MIT License": "MIT",
+  "GNU GPL v3 License": "GNU_GPLv3",
+  "Apache License 2.0" :"Apache_2.0"
+}
 
 // array of questions for user
 const questions = [
@@ -47,7 +47,7 @@ const questions = [
     name: "projectLicense",
     type: "list",
     message: "Select License Type:",
-    choices: licenses
+    choices: Object.keys(licenses)
   },
   {
     name: "githubUsername",
@@ -62,7 +62,10 @@ const questions = [
 ];
 
 // function to write README file
-function writeToFile(fileName, data) {
+function writeToFile(data) {
+  fs.writeFile('output/README.md', data, (err) =>
+  err ? console.error(err) : console.log('Commit logged!')
+);
 }
 
 // function to initialize program
@@ -75,6 +78,11 @@ function askQuestions(questions) {
     inquirer
       .prompt(questions)
       .then((answers) => {
+        const licenseBadge = {
+          "projectLicenseBadge": licenses[answers.projectLicense]
+        }
+        Object.assign(answers, licenseBadge);
+        console.log(licenseBadge);
         answersFunction(answers);
       });
 }
@@ -82,13 +90,15 @@ function askQuestions(questions) {
 function answersFunction (answers){
   console.log(answers);
   console.log(generateMarkdown(answers));
+  writeToFile(generateMarkdown(answers));
 }
 
 function welcomeMessage(){
   return (`Welcome to c4rli's README generator!
-  To use this tool you should enter the information prompted followed by the [enter] key
-  To exit at any time press [ctrl] + [c]
-  `)
+To use this tool you should enter the information prompted followed by the [enter] key.
+The output from the generator will be in the folder "output"
+To exit at any time press [ctrl] + [c]
+`)
 }
 
 // function call to initialize program
