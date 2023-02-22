@@ -33,7 +33,7 @@ const questions = [
   {
     name: "projectUsage",
     type: "input",
-    message: "Usage Info"
+    message: "Usage Info:"
   },
   {
     name: "projectContribution",
@@ -64,11 +64,12 @@ const questions = [
 ];
 
 // string with welcome message and instructions
-const welcomeMessage = (`~~~ Welcome to c4rli's README generator! ~~~
+const welcomeMessage = (`
+~~~ Welcome to c4rli's README generator! ~~~
 
-To use this tool you should enter the information prompted followed by the [enter] key.
-The output from the generator will be in the folder "output"
-To exit at any time press [ctrl] + [c]
+- To use this tool you should enter the information prompted followed by the [enter] key.
+- The README generated will be in the folder "output"
+- To exit at any time press [ctrl] + [c]
 `);
 
 // function to write README file

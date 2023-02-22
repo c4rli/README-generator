@@ -40,7 +40,9 @@ ${data.projectTesting}
 
 For any questions regarding this project you can find me here on github or send me an email!<br>
 Github: [${data.githubUsername}](https://github.com/${data.githubUsername})<br>
-Email: [${data.email}](mailto:${data.email})`;
+Email: [${data.email}](mailto:${data.email})<hr>
+
+Generated with <3 by c4rli's README generator - 2023`;
 }
 
 module.exports = generateMarkdown;
